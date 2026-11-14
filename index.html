@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#fffaf5" />
+  <title>Peachy Orders ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Peachy Orders home"><span class="brand-mark">♡</span><span>Peachy Orders</span></a>
+    <nav aria-label="Main navigation">
+      <button class="tab-button active" id="tab-track" type="button" aria-selected="true">Track my orders</button>
+      <button class="tab-button" id="tab-products" type="button" aria-selected="false">Overall product status</button>
+      <button class="tab-button hidden" id="tab-shop" type="button" aria-selected="false">Shop ♡</button>
+      <button class="nav-admin" id="open-admin" type="button">Admin</button>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero" id="track-panel">
+      <div class="hero-copy">
+        <div class="eyebrow">♡ A LITTLE UPDATE ON YOUR ORDER</div>
+        <h1>Your orders,<br><span>made easy.</span></h1>
+        <p class="hero-sub">Enter your Twitter / X username to see the latest status of all orders registered to you.</p>
+        <form id="lookup-form" class="lookup-card">
+          <label for="customer-x-id">YOUR TWITTER / X USERNAME</label>
+          <div class="lookup-row"><input id="customer-x-id" name="customer-x-id" placeholder="e.g. @yourusername" autocomplete="off" required /><button type="submit">Search orders ♡</button></div>
+          <p class="microcopy">You can enter your username with or without @.</p>
+        </form>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="blob"></div>
+        <div class="package"><div class="package-top"></div><div class="package-ribbon"></div><div class="package-bow">♡</div><div class="package-label">A LITTLE<br>HAPPINESS<br>INSIDE</div></div>
+        <span class="sparkle sparkle-one">✦</span><span class="sparkle sparkle-two">✧</span><span class="flower flower-one">✿</span><span class="heart">♥</span>
+      </div>
+    </section>
+
+    <section id="result" class="result-section hidden" aria-live="polite">
+      <div class="section-heading"><div><div class="eyebrow">YOUR ORDER UPDATES</div><h2>Your orders</h2></div><button class="text-button" id="clear-result">Search another username</button></div>
+      <div id="order-result"></div>
+    </section>
+
+    <section id="products-panel" class="products-section hidden">
+      <div class="products-heading"><div class="eyebrow">A QUICK LOOK AT WHAT'S HAPPENING</div><h1>Product <span>updates.</span></h1><p>See the latest overall progress for each product line.</p></div>
+      <div id="product-overview" class="product-overview"><p class="muted">Loading product updates…</p></div>
+      <p class="product-footnote">This overview shows combined order progress by product line, not individual customer details.</p>
+    </section>
+
+    <section id="shop-panel" class="shop-section hidden">
+      <div class="products-heading"><div class="eyebrow">♡ A LITTLE SHOPPING CORNER</div><h1>Shop <span>with us.</span></h1><p>Choose your items, review your cart and submit your payment slip.</p></div>
+      <div class="shop-layout">
+        <section class="shop-catalog"><div class="shop-section-title"><h2>Available products</h2><span class="muted">Add your favourites ♡</span></div><div id="shop-products" class="shop-products"><p class="muted">Loading products…</p></div></section>
+        <aside class="shop-cart-card"><div class="shop-section-title"><h2>Your cart</h2><span id="cart-count" class="cart-count">0 items</span></div><div id="cart-items" class="cart-items"><p class="muted">Your cart is waiting for something cute.</p></div><div class="cart-total"><span>Order total</span><strong id="cart-total">THB 0.00</strong></div>
+          <form id="shop-checkout-form" class="shop-checkout-form">
+            <label>YOUR TWITTER / X USERNAME<input id="shop-customer-x" required placeholder="@yourusername" autocomplete="off"></label>
+            <div class="shop-summary" id="shop-summary"><strong>Order summary</strong><p class="muted">Your selected items will appear here.</p></div>
+            <div class="bank-details" id="shop-bank-details"><strong>Payment by bank transfer</strong><p class="muted">Bank details will appear here.</p></div>
+            <label>UPLOAD PAYMENT SLIP<input id="payment-slip" type="file" accept="image/png,image/jpeg,image/webp,application/pdf" required><small>JPG, PNG, WEBP or PDF · Max 5 MB</small></label>
+            <button class="primary-button" id="submit-shop-order" type="submit">Submit order ♡</button>
+            <p class="form-hint">Your order will appear as Waiting for confirmation until the shop verifies your transfer.</p>
+          </form>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer><span class="footer-brand">♡ Peachy Orders</span><span>Thank you for shopping with us</span></footer>
+
+  <div class="modal-backdrop hidden" id="admin-modal" role="dialog" aria-modal="true" aria-labelledby="admin-title">
+    <div class="admin-modal">
+      <button class="modal-close" id="close-admin" aria-label="Close">×</button>
+      <div class="eyebrow">♡ STORE ADMIN</div><h2 id="admin-title">Order management</h2>
+      <div id="auth-panel">
+        <p class="muted">Sign in to add orders and update product progress.</p>
+        <form id="login-form" class="admin-form"><label>Email<input type="email" id="admin-email" required placeholder="you@yourstore.com"></label><label>Password<input type="password" id="admin-password" required placeholder="Your password"></label><button class="primary-button" type="submit">Sign in</button></form>
+      </div>
+      <div id="dashboard" class="hidden">
+        <div class="dashboard-top"><p class="muted" id="admin-welcome">Signed in</p><button class="text-button" id="sign-out">Sign out</button></div>
+        <section class="shop-admin-panel">
+          <div class="list-heading"><div><h3>♡ Optional shopping page</h3><p class="muted">Turn the customer shopping page on only when you are not taking orders by DM.</p></div><label class="toggle-label"><input type="checkbox" id="shop-enabled"> <span>Visible to customers</span></label></div>
+          <div class="shop-admin-settings">
+            <div class="shop-admin-products"><h4>Shop products</h4><form id="shop-product-form" class="admin-form"><input type="hidden" id="shop-product-id"><label>Product name<input id="shop-product-name" required placeholder="Product name"></label><label>Description<input id="shop-product-description" placeholder="Short product description"></label><div class="field-pair"><label>Price<input id="shop-product-price" type="number" min="0.01" step="0.01" required></label><label>Currency<select id="shop-product-currency"><option>THB</option><option>USD</option><option>JPY</option><option>KRW</option><option>GBP</option><option>EUR</option></select></label></div><label>Product line<input id="shop-product-line" placeholder="e.g. Japan Merch"></label><div class="form-actions"><button class="primary-button" type="submit" id="shop-product-save">Add product</button><button class="text-button hidden" type="button" id="shop-product-cancel">Cancel</button></div></form><div id="shop-admin-products" class="shop-admin-list"></div></div>
+            <div class="shop-admin-bank"><h4>Shop bank details</h4><form id="shop-settings-form" class="admin-form"><label>Bank name<input id="shop-bank-name" placeholder="Bank name"></label><label>Account name<input id="shop-bank-account-name" placeholder="Account holder name"></label><label>Account number<input id="shop-bank-account-number" placeholder="Account number"></label><label>Payment instructions<textarea id="shop-bank-instructions" rows="3" placeholder="Please transfer the exact amount…"></textarea></label><button class="primary-button" type="submit">Save shop settings</button></form></div>
+          </div>
+          <div class="shop-admin-orders"><div class="list-heading"><h4>Shopping orders awaiting confirmation</h4><button class="text-button" id="refresh-shop-orders" type="button">Refresh</button></div><div id="shop-admin-orders"><p class="muted">Sign in to view shopping orders.</p></div></div>
+        </section>
+        <div class="admin-columns">
+          <form id="order-form" class="admin-form order-editor">
+            <h3 id="form-heading">＋ Add an order</h3>
+            <input type="hidden" id="edit-id">
+            <label>Order ID<input id="new-order-id" required placeholder="e.g. PC-240815"></label>
+            <label>Customer name<input id="customer-name" required placeholder="Customer name"></label>
+            <label>Customer Twitter / X username<input id="admin-customer-x-id" required placeholder="@username"></label>
+            <label>Product line<input id="product-line" required placeholder="e.g. Summer Collection"></label>
+            <label>Items / order summary<textarea id="items" rows="2" placeholder="Pink tote bag × 1, Hair clips × 2"></textarea></label>
+            <div class="field-pair"><label>Total amount<input id="total" type="number" min="0" step="0.01" placeholder="0.00"></label><label>Currency<select id="currency"><option>THB</option><option>USD</option><option>JPY</option><option>KRW</option><option>GBP</option><option>EUR</option></select></label></div>
+            <label>Order status<select id="status"><option value="pending_payment">Pending payment</option><option value="payment_received">Payment received</option><option value="processing">Processing</option><option value="purchased">Purchased</option><option value="preparing_shipment">Preparing shipment</option><option value="shipped">Shipped</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></label>
+            <label>Payment status<select id="payment-status"><option value="unpaid">Unpaid</option><option value="paid">Paid</option><option value="refunded">Refunded</option></select></label>
+            <div class="field-pair"><label>Shipping carrier<input id="carrier" placeholder="e.g. Thailand Post"></label><label>Tracking number<input id="tracking-number" placeholder="Tracking code"></label></div>
+            <label>Message for customer<textarea id="customer-note" rows="2" placeholder="A short update for your customer…"></textarea></label>
+            <div class="form-actions"><button class="primary-button" type="submit" id="save-order">Save order</button><button class="text-button hidden" type="button" id="cancel-edit">Cancel edit</button></div>
+            <p class="form-hint">X usernames are public identifiers. Anyone who knows a username can look up its orders. Avoid storing private addresses or sensitive payment details in customer-visible fields.</p>
+          </form>
+          <div class="order-list-panel"><div class="list-heading"><h3>Recent orders</h3><button class="text-button" id="refresh-orders">Refresh</button></div><input class="search-input" id="admin-search" placeholder="Search order ID, customer or X username…"><div id="admin-orders" class="admin-orders"><p class="muted">Sign in to load orders.</p></div></div>
+        </div>
+      </div>
+      <p id="admin-message" class="notice hidden" role="status"></p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script src="shop.js"></script>
+</body>
+</html>
